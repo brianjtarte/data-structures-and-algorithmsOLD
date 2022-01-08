@@ -25,8 +25,9 @@ let starWarsPeople = [
 ];
 
 const sortStarWarsCharacters = (starWarsArr) => {
-  return starWarsArr.sort((a,b)=>{
-    return parseInt(b.height) - parseInt(a.height); });
+  return starWarsArr.sort((a, b) => {
+    return parseInt(b.height) - parseInt(a.height);
+  });
   // Solution code here...
 };
 
@@ -37,7 +38,7 @@ Write a function named removeThree that takes an index and an array. The functio
 ------------------------------------------------------------------------------------------------ */
 
 const removeThree = (idx, arr) => {
-  arr.splice(idx,3);
+  arr.splice(idx, 3);
   return arr;
   // Solution code here...
 };
@@ -68,10 +69,10 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
-  for (let i = 0; i < str.length+1; i++){
-    str = str.slice(1);
+  for (let i = 0; i < str.length + 1; i++) {
+    result.push(str.slice(i));
   }
-  result.push(str);
+  
   // Solution code here...
   return result;
 };
@@ -133,11 +134,15 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
-  let listRecipe = gruffaloCrumble.ingredients.slice(2);
+  recipe.ingredients.forEach(ingredientStr => {
+    let withoutAmt = ingredientStr.slice(ingredientStr.indexOf(' ') + 1);
+    let withoutUnit = withoutAmt.slice(withoutAmt.indexOf(' ')+ 1);
 
-  result.push(listRecipe);
-  // Solution code here...
-  
+    result.push(withoutUnit);
+  });
+
+  return result;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
