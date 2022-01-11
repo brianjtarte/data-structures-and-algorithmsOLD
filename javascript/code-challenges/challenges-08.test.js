@@ -133,12 +133,12 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 
 const citiesAtoJ = (arr) => {
   let yikes = [];
-  let iHaveThirtyMinutesToTurnThisIn = /[A-J]^/;
+  let iHaveThirtyMinutesToTurnThisIn = /^[A-J]/;
   arr.forEach(twentyFiveMinutesLeft => {
     if (iHaveThirtyMinutesToTurnThisIn.test(twentyFiveMinutesLeft)) yikes.push(twentyFiveMinutesLeft);
   // Solution code here...
   });
-  return iHaveThirtyMinutesToTurnThisIn;
+  return yikes;
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
