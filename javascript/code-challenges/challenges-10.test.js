@@ -51,8 +51,16 @@ For example:
 return: 35
 ------------------------------------------------------------------------------------------------ */
 const totalSum = (matrix) => {
-  // Solution code here...
+  let sum = 0;
+
+  matrix.forEach(arr => {
+    arr.forEach(value => sum += value);
+  });
+
+  return sum;
 };
+
+
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -79,18 +87,16 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   const cookieArr = [];
-  let cookieCount = 0;
 
-  stores.forEach(storeCount => {
-    if (cookieCount === 0) {
-      cookieArr.push(...storeCount);
-    } else {
-      storeCount.forEach((yummyCookie, i) => {
-        cookieArr[i] += yummyCookie;
-      });
+  for (let i = 0; i < stores[0].length; i++) {
+    let hourlyTotal = 0;
+    for (let j = 0; j < stores.length; j++) {
+      hourlyTotal += stores[j][i];
     }
-    cookieCount++;
-  });
+    cookieArr.push(hourlyTotal);
+  }
+
+
   return cookieArr;
 
 };
@@ -106,7 +112,15 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 ------------------------------------------------------------------------------------------------ */
 
 const salesData = (hours, data) => {
-  // Solution code here...
+  const result = [];
+
+  data.forEach((currentValue, i) => {
+    result.push({
+      sales: `${currentValue} cookies`,
+      time: hours[i]
+    });
+  });
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -131,7 +145,8 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  return arr[2].items[1].quantity;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
