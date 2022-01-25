@@ -18,10 +18,11 @@ Becomes:
 ]
 ------------------------------------------------------------------------------------------------ */
 
-function transformToLis(obj){
-  const newArr = obj.map(name => `<li>${name}</li>`).join('');
+function transformToLis(obj) {
 
-  return newArr;
+  return Object.keys(obj).map(key => {
+    return (`<li>${key}: ${obj[key]}</li>`);
+  });
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -35,7 +36,15 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
 const count = (target, input) => {
-  // Solution code here...
+  return input.reduce((accumulator, currentValue) => {
+    const rowCount = currentValue.reduce((innerAccumulator, innerCurrentValue) => {
+      if (innerCurrentValue === target) {
+        return innerAccumulator + 1;
+      }
+      return innerAccumulator;
+    }, 0);
+    return accumulator + rowCount;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -49,7 +58,13 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
 
 const totalSum = (input) => {
-  // Solution code here...
+  let sum = 0;
+
+  input.forEach(arr => {
+    arr.forEach(value => sum += value);
+  });
+
+  return sum;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -65,7 +80,10 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  // Solution code here...
+  return input.map(arr => {
+    return arr.filter(value => typeof value === 'number' && value % 5 === 0)
+      .map(num => Math.pow(2, num));
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -131,7 +149,10 @@ let starWarsData = [{
 }];
 
 let findMaleAndFemale = (data) => {
-  // Solution code here...
+  // iterate through the array of objects, returning an array of names who have a gender assigned
+
+  return data.filter(names => names.gender === 'male' || 'female')
+    .map(characterGen => characterGen + ' and');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -157,8 +178,8 @@ Run your tests from the console: jest challenges-10.test.js
 
 describe('Testing challenge 1', () => {
   test('It should return a list of key value pairs inside of li tags', () => {
-    expect(transformToLis({name: 'bob', age: 32})[0]).toStrictEqual(`<li>name: bob</li>`);
-    expect(transformToLis({name: 'bob', age: 32})[1]).toStrictEqual(`<li>age: 32</li>`);
+    expect(transformToLis({ name: 'bob', age: 32 })[0]).toStrictEqual(`<li>name: bob</li>`);
+    expect(transformToLis({ name: 'bob', age: 32 })[1]).toStrictEqual(`<li>age: 32</li>`);
     expect(transformToLis({})).toStrictEqual([]);
   });
 });
