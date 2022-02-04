@@ -44,7 +44,9 @@ Write a function named checkValues that takes in an object and a value and retur
 ------------------------------------------------------------------------------------------------ */
 
 const checkValues = (obj, value) => {
-  // Solution code here...
+  let isItBehindDoor3 = false;
+  Object.values(obj).forEach(val => val === value ? isItBehindDoor3 = true : '');
+  return isItBehindDoor3;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -67,7 +69,9 @@ HR has asked you to change the data to make it easier to print so that it looks 
 ------------------------------------------------------------------------------------------------ */
 
 const updateNumbers = (obj) => {
-  // Solution code here...
+  const newArr = [];
+  Object.keys(obj).forEach(hotlineBling => newArr.push(`${hotlineBling}: ${obj[hotlineBling]}`));
+  return newArr;
 };
 
 
@@ -123,7 +127,9 @@ const characters = [
 
 const getHouses = (arr) => {
   let houses = [];
-  // Solution code here...
+  houses = arr.map(theKingInTheNorth => {
+    return theKingInTheNorth.house;
+  });
   return houses;
 };
 
@@ -140,8 +146,16 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
+  let kids = 0;
 
+  arr.forEach(jonSnowIsNotABastardChild => {
+    if (jonSnowIsNotABastardChild.name === character) {
+      Object.keys(jonSnowIsNotABastardChild).forEach((key, idx) => {
+        if (key === 'children') kids = Object.values(jonSnowIsNotABastardChild)[idx].length;
+      });
+    }
+  });
+  return kids ? true : false;
 };
 
 /* ------------------------------------------------------------------------------------------------
